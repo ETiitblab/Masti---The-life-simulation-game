@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chat</title>
+    <style>
+        #chat{
+            height:100%;
+            bottom:50px;
+            top:50px;
+            background: gold;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat"></div>
+    <form id="send-message">
+        <input  id="message" autocomplete="off"/>
+        <input type="submit"/>
+    </form>
+    <style>
+        #send-message{
+            position: fixed;
+            width: auto;
+            bottom: 30px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        jQuery(function ($) {
+            var socket = io.connect();
+            var $messageForm = $('#send-message');
+            var $messageBox = $('#message');
+            var $chat = $('#chat');
+            var $myip = "";
+
+            $.get("http://ipinfo.io", function(response) {
+                $myip = response.ip;
+            }, "jsonp");
+
+            $messageForm.submit(function (e) {
+                e.preventDefault();
+                socket.emit('send message', "<b>" + $myip + ": </b>" + $messageBox.val());
+                $messageBox.val("");
+            });
+
+            socket.on('new message',function (data) {
+                $chat.append(data + "<br/>");
+            });
+        });
+    </script>
+</body>
+</html>

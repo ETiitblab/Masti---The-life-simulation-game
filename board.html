@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ModernLudo</title>
+    <link rel="stylesheet" type="text/css" href="Styles/board.css" />
+</head>
+<body>
+    <div id="playGround" style="display:none;">
+        <div id="main">
+            <canvas id="gameboard"></canvas>
+        </div>
+    </div>
+	<div id="chatWindow">
+    <iframe src="chat.html" id="chatFrame"></iframe>
+	</div>
+	<script type="text/javascript" src="Scripts/board.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        jQuery(function ($) {
+            var socket = io.connect();
+            var $myip = "";
+            $.get("http://ipinfo.io", function(response) {
+                $myip = response.ip;
+                if (response.isEmptyObject()){
+                    alert("connection error!");
+                }
+                alert($myip);
+            }, "jsonp");
+        })
+    </script>
+</body>
+</html>
