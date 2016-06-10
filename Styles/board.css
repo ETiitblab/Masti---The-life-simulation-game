@@ -172,6 +172,17 @@ div#main {
 		bottom:0;
 		background:green;
 }
+
+#detailsDiv{
+    position: fixed;
+    height: 15%;
+    width:80%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: green;
+}
+
 #chatFrame{
 		position:fixed;
         height:100%;

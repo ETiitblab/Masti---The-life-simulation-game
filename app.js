@@ -31,8 +31,16 @@ app.use('/',express.static(__dirname + '/'));
 io.sockets.on('connection',function (socket) {
     console.log("New user Conneted");
     
-    //Add a message to chat. 
+    //Receive a chat message from user.
     socket.on('send message',function (data) {
+        //Broadcast the chat message.
         io.sockets.emit('new message',data);
     });
+
+    //Receive the dice value rolled by user
+    socket.on('diceRolled',function (data) {
+        //Broadcast the dice value to all chats.
+        io.sockets.emit('new message',"Dice rolled with number: " + data);
+    });
+
 });

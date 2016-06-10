@@ -32,6 +32,11 @@ function initPlayGround() {
     canvas.setStyle(canvasStyle);
     drawTheBoard();
 }
+
+function placeThePawn(){
+
+}
+
 function drawTheBoard() {
     refreshBoard();
     drawSkyGradient();
@@ -166,7 +171,7 @@ function createMap() {
 }
 function refreshBoard() {
     canvasWidth = window.innerWidth*(4/5);
-    canvasHeight = window.innerHeight;
+    canvasHeight = window.innerHeight*(17/20);
     maindiv.style.width = canvasWidth + "px";
     maindiv.style.height = canvasHeight + "px";
     chatWindow.style.width = canvasWidth/4 + "px";
@@ -183,7 +188,6 @@ function refreshBoard() {
     //For a normal 16" desktop tileWidth = 161 pixels and fontsize = 20px.
     //According with change in window size the dynamicFontSize will change.
     dynamicFontSize = 20*tileWidth/161;
-
 }
 function resizeboard() {
     refreshBoard();

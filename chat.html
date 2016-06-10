@@ -32,15 +32,10 @@
             var $messageForm = $('#send-message');
             var $messageBox = $('#message');
             var $chat = $('#chat');
-            var $myip = "";
-
-            $.get("http://ipinfo.io", function(response) {
-                $myip = response.ip;
-            }, "jsonp");
 
             $messageForm.submit(function (e) {
                 e.preventDefault();
-                socket.emit('send message', "<b>" + $myip + ": </b>" + $messageBox.val());
+                socket.emit('send message', "user:" + $messageBox.val());
                 $messageBox.val("");
             });
 
