@@ -26,6 +26,7 @@ app.get('/chat',function (req, res) {
 app.use('/Scripts', express.static(__dirname + '/Scripts'));
 app.use('/Styles', express.static(__dirname + '/Styles'));
 app.use('/',express.static(__dirname + '/'));
+app.use('/panws',express.static(__dirname + '/panws'));
 
 //When user connects. 
 io.sockets.on('connection',function (socket) {
@@ -38,9 +39,11 @@ io.sockets.on('connection',function (socket) {
     });
 
     //Receive the dice value rolled by user
-    socket.on('diceRolled',function (data) {
+    socket.on('diceRolled',function (diceValue) {
+        //Broadcast the pawn movement to all users.
+        io.sockets.emit('move pawn',diceValue);
         //Broadcast the dice value to all chats.
-        io.sockets.emit('new message',"Dice rolled with number: " + data);
+        io.sockets.emit('new message',"Dice rolled with number: " + diceValue);
     });
 
 });

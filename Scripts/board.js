@@ -7,6 +7,7 @@ var dynamicFontSize = null;
 
 function init() {
     initPlayGround();
+    currentPawnPosition = -1;
 }
 
 function initPlayGround() {
@@ -31,9 +32,6 @@ function initPlayGround() {
     };
     canvas.setStyle(canvasStyle);
     drawTheBoard();
-}
-
-function placeThePawn(){
 
 }
 
@@ -188,12 +186,16 @@ function refreshBoard() {
     //For a normal 16" desktop tileWidth = 161 pixels and fontsize = 20px.
     //According with change in window size the dynamicFontSize will change.
     dynamicFontSize = 20*tileWidth/161;
+    
+    initPawnCanvas();
+
 }
+
 function resizeboard() {
     refreshBoard();
     drawTheBoard();
-    updateAllPlanes();
-    changeHands();
+    //changeHands();
+
     if (!onmobile)
         document.getElementById("buttondiv").style.visibility = "";
 }

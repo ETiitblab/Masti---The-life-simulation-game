@@ -5,8 +5,7 @@
     <style>
         #chat{
             height:100%;
-            bottom:50px;
-            top:50px;
+            margin-bottom: 55px;
             background: gold;
         }
     </style>
@@ -24,7 +23,7 @@
             bottom: 30px;
         }
     </style>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         jQuery(function ($) {
@@ -42,6 +41,7 @@
             socket.on('new message',function (data) {
                 $chat.append(data + "<br/>");
             });
+
         });
     </script>
 </body>

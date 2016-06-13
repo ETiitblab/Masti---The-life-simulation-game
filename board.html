@@ -26,8 +26,9 @@
 </head>
 <body>
     <div id="playGround" style="display:none;">
-        <div id="main">
+        <div id="main" >
             <canvas id="gameboard"></canvas>
+            <canvas id="pawnboard"></canvas>
         </div>
     </div>
 
@@ -40,26 +41,25 @@
 	</div>
 	<script type="text/javascript" src="Scripts/board.js"></script>
     <script type="text/javascript" src="Scripts/setDetails.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="Scripts/renderingPawns.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         jQuery(function ($) {
             var socket = io.connect();
-            var $button = $('#diceroll');
+            var $rolldice = $('#diceroll');
 
-            $button.click(function () {
+            $rolldice.click(function () {
                 var die = document.getElementById("die1");
                 var d = Math.floor(Math.random()*6) + 1;
-                $.each([2,5,4,9,6,7,3,8,1],function (index, value) {
-                    setTimeout(die.innerHTML = value,100);
-
-                });
                 die.innerHTML = d;
+//                moveThePawn(d);
                 socket.emit("diceRolled",d);
-
             });
 
-            socket.on()
+            socket.on('move pawn',function (data) {
+                moveThePawn(data);
+            });
 
         });
     </script>
