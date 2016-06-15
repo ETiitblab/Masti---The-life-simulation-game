@@ -1,0 +1,34 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>User info</title>
+</head>
+<body>
+	<script type="text/javascript" src="Scripts/jquery.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	
+	<p>Your username:</p>
+	<input type="text" id="username"></input> <br>
+	<button style="margin-top:20" id="saveinfo">Save</button><br>
+	<div id="userJoiningLog"></div>
+	<script>
+		jQuery(function($){
+			var socket = io.connect();
+			var $saveUserInfo = $('#saveinfo');
+            var $userJoiningLog = $('#userJoiningLog');
+		
+			$saveUserInfo.click(function(){
+				socket.emit('new user',document.getElementById("username").value);
+			});
+
+            socket.on('userjoininglog',function (log) {
+                $userJoiningLog.append(log);
+            });
+
+            socket.on('startTheGame',function (data) {
+                window.location.replace("/board.html");
+            });
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>User info</title>
+</head>
+<body>
+	Your username:<br>
+	<input type="texet" name="username"><br>
+</body>
+</html>
