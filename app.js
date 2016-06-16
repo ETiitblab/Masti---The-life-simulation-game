@@ -67,6 +67,6 @@ io.sockets.on('connection',function (socket) {
             io.sockets.emit('userjoininglog', "<p style='font-size: 25px;font-family: Papyrus,cursive;color:yellow;font-weight: bold;'>" + user + " has joined the game...<br></p>")
             io.sockets.emit('startTheGame','');
         }
-    })
+    });
 
 });

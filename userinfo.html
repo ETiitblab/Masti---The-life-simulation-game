@@ -8,9 +8,11 @@
 	<script src="/socket.io/socket.io.js"></script>
 	
 	<p>Your username:</p>
-	<input type="text" id="username"></input> <br>
-	<button style="margin-top:20" id="saveinfo">Save</button><br>
-	<div id="userJoiningLog"></div>
+	<input type="text" id="username"/> <br>
+	<button style="margin-top:20px" id="saveinfo">Save</button><br>
+	<div id="userJoiningLog" style="background-color: #777777;padding: 20px;margin-top: 10px">
+		<p style="color: white;">Waiting for users to join...</p>
+	</div>
 	<script>
 		jQuery(function($){
 			var socket = io.connect();
