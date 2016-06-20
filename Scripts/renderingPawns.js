@@ -2,28 +2,67 @@
  * Created by Srujan on 11-06-2016.
  */
 var pawn_canvas = null, pawn_ctx = null;
-var pawn_image;
-var currentPawnPosition;
+var pawn_red_position;
 
-function drawThePawn(x,y) {
-    pawn_image = new Image();
-    pawn_image.src = 'pawns/pawn_red.png';
-    pawn_image.style.opacity = 1;
-    pawn_image.onload = function(){
-        pawn_ctx.drawImage(pawn_image
-            , tileWidth / 2 + tileWidth * x + tileWidth/2 - tileWidth*32/322 //To make sure pawn is in the centre of the tile. 
-            , (tileWidth/2) / 2 + (tileWidth/2) * y + tileWidth/4 - tileWidth*32/322
-            , tileWidth*32/161 // Pawn dimensions should be 32px when tile is 161 px wide. 
-                               // The formula helps resizing the pawn when window size is changed.
-            , tileWidth*32/161);
+function drawThePawn(x,y,user) {
+    var deviationFromTileCentre = tileWidth*16/161;
+    if (user == 0){
+        var pawn_image = new Image();
+        pawn_image.src = 'pawns/pawn_red.png';
+        pawn_image.style.opacity = 1;
+        pawn_image.onload = function(){
+            pawn_ctx.drawImage(pawn_image
+                , tileWidth / 2 + tileWidth * x + tileWidth/2 - tileWidth*32/322 - deviationFromTileCentre //tileWith*32/322 is To make sure pawn is in the centre of the tile.
+                , (tileWidth/2) / 2 + (tileWidth/2) * y + tileWidth/4 - tileWidth*32/322 - deviationFromTileCentre
+                , tileWidth*32/161 // Pawn dimensions should be 32px when tile is 161 px wide. 
+                // The formula helps resizing the pawn when window size is changed.
+                , tileWidth*32/161);
+        }
+    }else if (user == 1){
+        var pawn_image = new Image();
+        pawn_image.src = 'pawns/pawn_blue.png';
+        pawn_image.style.opacity = 1;
+        pawn_image.onload = function(){
+            pawn_ctx.drawImage(pawn_image
+                , tileWidth / 2 + tileWidth * x + tileWidth/2 - tileWidth*32/322 + deviationFromTileCentre//To make sure pawn is in the centre of the tile.
+                , (tileWidth/2) / 2 + (tileWidth/2) * y + tileWidth/4 - tileWidth*32/322 - deviationFromTileCentre
+                , tileWidth*32/161 // Pawn dimensions should be 32px when tile is 161 px wide.
+                // The formula helps resizing the pawn when window size is changed.
+                , tileWidth*32/161);
+        }
+    }else if (user == 2){
+        var pawn_image = new Image();
+        pawn_image.src = 'pawns/pawn_green.png';
+        pawn_image.style.opacity = 1;
+        pawn_image.onload = function(){
+            pawn_ctx.drawImage(pawn_image
+                , tileWidth / 2 + tileWidth * x + tileWidth/2 - tileWidth*32/322  - deviationFromTileCentre//To make sure pawn is in the centre of the tile.
+                , (tileWidth/2) / 2 + (tileWidth/2) * y + tileWidth/4 - tileWidth*32/322 + deviationFromTileCentre
+                , tileWidth*32/161 // Pawn dimensions should be 32px when tile is 161 px wide.
+                // The formula helps resizing the pawn when window size is changed.
+                , tileWidth*32/161);
+        }
+    }else if (user == 3){
+        var pawn_image = new Image();
+        pawn_image.src = 'pawns/pawn_yellow.png';
+        pawn_image.style.opacity = 1;
+        pawn_image.onload = function(){
+            pawn_ctx.drawImage(pawn_image
+                , tileWidth / 2 + tileWidth * x + tileWidth/2 - tileWidth*32/322 + deviationFromTileCentre//To make sure pawn is in the centre of the tile.
+                , (tileWidth/2) / 2 + (tileWidth/2) * y + tileWidth/4 - tileWidth*32/322 + deviationFromTileCentre
+                , tileWidth*32/161 // Pawn dimensions should be 32px when tile is 161 px wide.
+                // The formula helps resizing the pawn when window size is changed.
+                , tileWidth*32/161);
+        }
     }
 }
 
-function moveThePawn(moves){
+function redrawPawns($pawnPositions){
     clearCanvas();
-    currentPawnPosition = (currentPawnPosition + moves)%24;
-    // alert('new position:' + currentPawnPosition);
-    drawThePawn(getTileX(currentPawnPosition + 1),getTileY(currentPawnPosition + 1));
+    drawThePawn(getTileX($pawnPositions[0]),getTileY($pawnPositions[0]),0);
+    drawThePawn(getTileX($pawnPositions[1]),getTileY($pawnPositions[1]),1);
+    drawThePawn(getTileX($pawnPositions[2]),getTileY($pawnPositions[2]),2);
+    drawThePawn(getTileX($pawnPositions[3]),getTileY($pawnPositions[3]),3);
 }
 
 function clearCanvas(){
@@ -32,6 +71,7 @@ function clearCanvas(){
 
 function getTileX(currentPosition){
     switch (currentPosition){
+        case 0: return -0.75; break;
         case 1: return 0; break;
         case 2: return 1; break;
         case 3: return 2; break;
@@ -63,6 +103,7 @@ function getTileX(currentPosition){
 }
 function getTileY(currentPosition) {
     switch (currentPosition){
+        case 0: return 0; break;
         case 1: return 0; break;
         case 2: return 0; break;
         case 3: return 0; break;
@@ -111,5 +152,8 @@ function initPawnCanvas(){
     pawn_ctx.canvas.width = canvasWidth;
     pawn_ctx.canvas.height = canvasHeight;
 
-    drawThePawn(-0.75,0);
+    drawThePawn(-0.75,0,0);
+    drawThePawn(-0.75,0,1);
+    drawThePawn(-0.75,0,2);
+    drawThePawn(-0.75,0,3);
 }

@@ -7,6 +7,9 @@ var express = require('express'),
     io = require('socket.io').listen(server);
 var users = [];
 var $usersColors = ["red","blue","green","yellow"];
+var $pawnPositions = [0,0,0,0];
+var $turnOfUserNumber = 0;
+
 server.listen(3000);
 
 //Responds with perticular html pages on user requests.
@@ -37,8 +40,6 @@ app.use('/panws',express.static(__dirname + '/panws'));
 //When user connects. 
 io.sockets.on('connection',function (socket) {
     console.log("New user Conneted");
-
-
     
     //Receive a chat message from user.
     socket.on('send message',function (data) {
@@ -48,10 +49,13 @@ io.sockets.on('connection',function (socket) {
 
     //Receive the dice value rolled by user
     socket.on('diceRolled',function (diceValue) {
+        $pawnPositions[$turnOfUserNumber] = ($pawnPositions[$turnOfUserNumber] - 1 + diceValue) % 24 + 1;
         //Broadcast the pawn movement to all users.
-        io.sockets.emit('move pawn',diceValue);
+        io.sockets.emit('pawn moved',$pawnPositions);
         //Broadcast the dice value to all chats.
         io.sockets.emit('new message',"Dice rolled with number: " + diceValue);
+        $turnOfUserNumber++;
+        $turnOfUserNumber %= 4;
     });
     
     socket.on('new user',function (user) {

@@ -7,7 +7,7 @@ var dynamicFontSize = null;
 
 function init() {
     initPlayGround();
-    currentPawnPosition = -1;
+    pawn_red_position = 0;
 }
 
 function initPlayGround() {
