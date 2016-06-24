@@ -48,99 +48,99 @@ function drawTheBoard() {
             switch (boardmap[y][x]) {
                 case 1:
                     stepColor = "blue";
-                    stepAction = "Step 1";
+                    stepAction = "Expense";
                     break;
                 case 2:
                     stepColor = "green";
-                    stepAction = "Step 2";
+                    stepAction = "Event";
                     break;
                 case 3:
                     stepColor = "red";
-                    stepAction = "step 3";
+                    stepAction = "Opportunity";
                     break;
                 case 4:
                     stepColor = "yellow";
-                    stepAction = "step 4";
+                    stepAction = "Knowledge and Training";
                     break;
                 case 5:
                     stepColor = "blue";
-                    stepAction = "Step 5";
+                    stepAction = "Event";
                     break;
                 case 6:
                     stepColor = "green";
-                    stepAction = "Step 6";
+                    stepAction = "Opportunity";
                     break;
                 case 7:
                     stepColor = "red";
-                    stepAction = "step 7";
+                    stepAction = "Event";
                     break;
                 case 8:
                     stepColor = "yellow";
-                    stepAction = "step 8";
+                    stepAction = "Expense";
                     break;
                 case 9:
                     stepColor = "blue";
-                    stepAction = "Step 9";
+                    stepAction = "Event";
                     break;
                 case 10:
                     stepColor = "green";
-                    stepAction = "Step 10";
+                    stepAction = "Job change";
                     break;
                 case 11:
                     stepColor = "red";
-                    stepAction = "step 11";
+                    stepAction = "Event";
                     break;
                 case 12:
                     stepColor = "yellow";
-                    stepAction = "step 12";
+                    stepAction = "Opportunity";
                     break;
                 case 13:
                     stepColor = "blue";
-                    stepAction = "Step 13";
+                    stepAction = "Celebration";
                     break;
                 case 14:
                     stepColor = "green";
-                    stepAction = "Step 14";
+                    stepAction = "Opportunity";
                     break;
                 case 15:
                     stepColor = "red";
-                    stepAction = "step 15";
+                    stepAction = "Event";
                     break;
                 case 16:
                     stepColor = "yellow";
-                    stepAction = "step 16";
+                    stepAction = "Academic achievement";
                     break;
                 case 17:
                     stepColor = "blue";
-                    stepAction = "Step 17";
+                    stepAction = "Expense";
                     break;
                 case 18:
                     stepColor = "green";
-                    stepAction = "Step 18";
+                    stepAction = "Event";
                     break;
                 case 19:
                     stepColor = "red";
-                    stepAction = "step 19";
+                    stepAction = "Opportunity";
                     break;
                 case 20:
                     stepColor = "yellow";
-                    stepAction = "step 20";
+                    stepAction = "Celebration";
                     break;
                 case 21:
                     stepColor = "blue";
-                    stepAction = "Step 21";
+                    stepAction = "Expense";
                     break;
                 case 22:
                     stepColor = "green";
-                    stepAction = "Step 22";
+                    stepAction = "Opportunity";
                     break;
                 case 23:
                     stepColor = "red";
-                    stepAction = "step 23";
+                    stepAction = "Health issues";
                     break;
                 case 24:
                     stepColor = "yellow";
-                    stepAction = "step 24";
+                    stepAction = "Event";
                     break;
                 default:
                     stepColor = null;

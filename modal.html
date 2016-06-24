@@ -97,7 +97,7 @@
   </div>
 </div>
 <script type="text/javascript" src="cards.js"></script>
-<script type="text/javascript" src="board.html"></script>
+<script type="text/html" src="board.html"></script>
 <script type="text/javascript" src="board.js"></script>
 <script>
 
@@ -124,7 +124,7 @@ span.onclick = function() {
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
-        showCard(); //After this call the function is being called but somehow the modal is now showing up again.
+        window.parent.removeFrame();
     }
 };
     showNow();
