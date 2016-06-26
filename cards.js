@@ -1,5 +1,5 @@
 function showModal(){
-    // alert("showmodal");
+    // alert(myUserName);
     document.getElementById("cardframe").style.display = "";
     document.getElementById("cardframe").src = "modal.html";
 }

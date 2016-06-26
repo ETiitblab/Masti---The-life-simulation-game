@@ -5,11 +5,13 @@ var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
     io = require('socket.io').listen(server);
+server.listen(3000);
 var users = [];
 var $usersColors = ["red","blue","green","yellow"];
 var $pawnPositions = [0,0,0,0];
+
 var $turnOfUserNumber = 0;
-var cardType = ["exp","eve","opp","knt","eve","opp","eve","exp","eve","jc","eve","opp","clb","opp","eve","aca","exp","eve","opp","clb","exp","opp","hi","eve"];
+
 var user0 = {MU : 0,RS : 0,WB : 0,SI : 0, GI : 0, NI : 0};
 var user1 = {MU : 0,RS : 0,WB : 0,SI : 0, GI : 0, NI : 0};
 var user2 = {MU : 0,RS : 0,WB : 0,SI : 0, GI : 0, NI : 0};
@@ -17,7 +19,22 @@ var user3 = {MU : 0,RS : 0,WB : 0,SI : 0, GI : 0, NI : 0};
 var currentTurnPointer;
 var turnCounter = 0;
 
-server.listen(3000);
+//Declare all card names here.
+var e01;//,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24;
+//Assign cards to variable.
+initCards();
+
+//List of cards
+var eve = [e01];
+var exp = [];
+var opp = [];
+var knt = [];
+var jc = [];
+var clb = [];
+var aca = [];
+var hi = [];
+//Card types on the Job board.
+var tileType = [exp,eve,opp,knt,eve,opp,eve,exp,eve,jc,eve,opp,clb,opp,eve,aca,exp,eve,opp,clb,exp,opp,hi,eve];
 
 //Responds with perticular html pages on user requests.
 app.get('/',function (req, res) {
@@ -66,6 +83,7 @@ function nextTurn(){
 //When user connects. 
 io.sockets.on('connection',function (socket) {
     console.log("New user Conneted");
+    console.log(socket);
     
     //Receive a chat message from user.
     socket.on('send message',function (data) {
@@ -75,13 +93,13 @@ io.sockets.on('connection',function (socket) {
 
     //Receive the dice value rolled by user
     socket.on('diceRolled',function (diceValue) {
-        $pawnPositions[$turnOfUserNumber] = ($pawnPositions[$turnOfUserNumber] - 1 + diceValue) % 24 + 1;
+        $pawnPositions[turnCounter%4] = ($pawnPositions[turnCounter%4] - 1 + diceValue) % 24 + 1;
         //Broadcast the pawn movement to all users.
         io.sockets.emit('pawn moved',$pawnPositions);
         //Broadcast the dice value to all chats.
         io.sockets.emit('new message',"Dice rolled with number: " + diceValue);
-        $turnOfUserNumber++;
-        $turnOfUserNumber %= 4;
+        // $turnOfUserNumber++;
+        // $turnOfUserNumber %= 4;
 
         //show card
         setTimeout(function () {
@@ -92,7 +110,6 @@ io.sockets.on('connection',function (socket) {
     });
     
     socket.on('new user',function (user) {
-        var $color = $usersColors[users.length];
         users.push(user);
         if (users.length == 1) {
             io.sockets.emit('userjoininglog', "<p style='font-size: 25px;font-family: Papyrus,cursive;color:red;font-weight: bold;'>" + user + " has joined the game...<br></p>")
@@ -107,3 +124,10 @@ io.sockets.on('connection',function (socket) {
     });
     
 });
+
+//ALL CARDS
+function initCards() {
+    e01 = function () {
+        io.sockets.emit('new message', 'e01 card executed.');
+    };
+}
