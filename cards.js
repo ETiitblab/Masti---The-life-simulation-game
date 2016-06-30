@@ -1,7 +1,7 @@
 function showModal(){
-    // alert(myUserName);
+    alert("showModal: " + getUserName());
     document.getElementById("cardframe").style.display = "";
-    document.getElementById("cardframe").src = "modal.html";
+    document.getElementById("cardframe").src = "modal.html?" + getUserName() + "!";
 }
  window.removeFrame = function(){
     // alert("removeFrame called");

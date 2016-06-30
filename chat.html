@@ -25,6 +25,7 @@
     </style>
     <script type="text/javascript" src="Scripts/jquery.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="Scripts/userDetails.js"></script>
     <script>
         jQuery(function ($) {
             var socket = io.connect();
@@ -34,7 +35,7 @@
 
             $messageForm.submit(function (e) {
                 e.preventDefault();
-                socket.emit('send message', "user:" + $messageBox.val());
+                socket.emit('send message', getUserName() + ": " + $messageBox.val());
                 $messageBox.val("");
             });
 
