@@ -7,18 +7,23 @@ var dynamicFontSize = null;
 
 function init() {
     setUName();
+    initChar();
     initPlayGround();
     pawn_red_position = 0;
 }
 
 function setUName(){
     var myUrl = window.location.href;
-    var name = myUrl.slice(myUrl.indexOf("?")+1,myUrl.indexOf("!"));
+    var name = myUrl.slice(myUrl.indexOf("#")+1,myUrl.indexOf("!"));
     setUserName(name);
 }
 
+function initChar(){
+    document.getElementById("chatFrame").src = "chat.html#" + getUserName() + "!" ;
+}
+
 function initPlayGround() {
-    alert("myUserName: " + getUserName());
+    // alert("myUserName: " + getUserName());
     document.getElementById("playGround").style.display = "";
     maindiv = document.getElementById("main");
     //Declaring the chatWindow

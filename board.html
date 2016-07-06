@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>ModernLudo</title>
+    <title>MASTI</title>
     <link rel="stylesheet" type="text/css" href="Styles/board.css" />
     <style type="text/css">
         div.dice{
@@ -32,7 +32,7 @@
         <button style="margin-top: 16px" id="removeFrame" onclick="removeFrame()">Show card</button>
     </div>
 	<div id="chatWindow">
-    <iframe src="chat.html" id="chatFrame"></iframe>
+    <iframe id="chatFrame"></iframe>
 	</div>
     <script type="text/javascript" src="Scripts/userDetails.js"></script>
     <script type="text/javascript" src="Scripts/board.js"></script>
@@ -57,7 +57,7 @@
 
             socket.on('show card',function (data) {
 //                alert("user: " + data[0] + " card: " + data[1]);
-                showModal();
+                showModal(data);
             });
 
         });

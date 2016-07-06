@@ -102,7 +102,7 @@
 <script>
 //username
 var myUrl = window.location.href;
-var name = myUrl.slice(myUrl.indexOf("?")+1,myUrl.indexOf("!"));
+var name = myUrl.slice(myUrl.indexOf("#")+1,myUrl.indexOf("!"));
 //var myUserName = name;
 
 // Get the modal
@@ -133,7 +133,7 @@ window.onclick = function(event) {
     }
 };
 //alert("modal.html: " + myUserName);
-document.getElementById("username").innerHTML = getUserName();
+document.getElementById("username").innerHTML = name;
 showNow();
 </script>
 

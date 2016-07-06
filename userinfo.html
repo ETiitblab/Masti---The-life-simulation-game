@@ -28,7 +28,7 @@
             });
 
             socket.on('startTheGame',function (data) {
-				var url = "/board.html?" + document.getElementById("username").value + "!";
+				var url = "/board.html#" + document.getElementById("username").value + "!";
                 window.location.replace(url);
             });
 		});

@@ -27,6 +27,10 @@
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="Scripts/userDetails.js"></script>
     <script>
+        var myUrl = window.location.href;
+        var name = myUrl.slice(myUrl.indexOf("#")+1,myUrl.indexOf("!"));
+    </script>
+    <script>
         jQuery(function ($) {
             var socket = io.connect();
             var $messageForm = $('#send-message');
@@ -35,7 +39,7 @@
 
             $messageForm.submit(function (e) {
                 e.preventDefault();
-                socket.emit('send message', getUserName() + ": " + $messageBox.val());
+                socket.emit('send message', name + ": " + $messageBox.val());
                 $messageBox.val("");
             });
 
